@@ -1,19 +1,50 @@
+var product_id = 0;
+class Product {
+    constructor(nombre) {
+        this.id = ++product_id;
+        this.nombre = nombre;
+    }
+}
+
 function add_product() {
+    var nombre = document.getElementById('nombre').value;
+    var new_product = new Product(nombre);
+
+    var lista = document.getElementById('tabla_productos');
+    
+    //Create elements
+    var new_row_element = document.createElement('tr');
+    var new_td_element_id = document.createElement('td');
+    var new_td_element_nombre = document.createElement('td');
+    
+    //Assign contents
+    new_td_element_id.textContent = new_product.id;
+    new_td_element_nombre.textContent = new_product.nombre;
+    
+    //append children
+    new_row_element.appendChild(new_td_element_id);
+    new_row_element.appendChild(new_td_element_nombre);
+    
+    lista.appendChild(new_row_element);
+}
+
+function add_product_old() {
     var id = document.getElementById('id').value;
     var nombre = document.getElementById('nombre').value;
 
     var lista = document.getElementById('tabla_productos');
-    //<p id="1234">zapato para caballos</p>
-    // var new_paragraph = '<p id="' + id + '">' + nombre + '</p>'; 
-    //<tr><td>1234</td><td>Zapatos caballero</td></tr>
-    // var new_paragraph = `<p id="${id}">${nombre}</p>`;
-    var new_row = `<tr><td>${id}</td><td>${nombre}</td></tr>`;
+    
+    //Create elements
     var new_row_element = document.createElement('tr');
     var new_td_element_id = document.createElement('td');
     var new_td_element_nombre = document.createElement('td');
+    
+    //Assign contents
     new_td_element_id.textContent = id;
-    new_row_element.appendChild(new_td_element_id);
     new_td_element_nombre.textContent = nombre;
+    
+    //append children
+    new_row_element.appendChild(new_td_element_id);
     new_row_element.appendChild(new_td_element_nombre);
     
     lista.appendChild(new_row_element);
